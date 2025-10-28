@@ -1,7 +1,8 @@
 #--------- Initiate variables
 list_name = 0
 entries = []
-header_row = ("Item", "Quantity")
+header_row = ("Item", "Quantity", "Price")
+
 
 
 
@@ -16,13 +17,21 @@ def input_validation_selector(input, valid_options):
             print(f"Invalid input — please enter one of: {', '.join(valid_options)}")
             return False
 
+#---------- required input (non-empty)
+def required_input(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if user_input:
+            return user_input
+        else:
+            print("This field cannot be empty. Please provide a valid input.")
 
 #---------- start selection
 def start_select():
     print(f"\n----------PYTHON SHOPPING LIST----------\n")
     while True:
-        terminal_input=input(f"[n] New shopping list \n[b] Browse shopping lists \n[q] Quit program \n \n").strip().lower()
-        return input_validation_selector(terminal_input, ("n", "b", "q"))
+        user_input=input(f"[n] New shopping list \n[b] Browse shopping lists \n[q] Quit program \n \n").strip().lower()
+        return input_validation_selector(user_input, ("n", "b", "q"))
     
 
 #---------- get shopping lists
@@ -34,7 +43,7 @@ def start_select():
 #---------- create new shopping list
 def create_new_list():
     global list_name, entries
-    list_name = input("Enter the name of your new shopping list: ").strip()
+    list_name = required_input("Enter the name of your new shopping list: ").strip()
     entries = []
     print(f"New shopping list '{list_name}' created.")
     print(f"Add your first item to the shopping list.")
@@ -42,21 +51,42 @@ def create_new_list():
     shopping_list_handling_loop()
     
 #---------- render shopping list
+
 def render_shopping_list():
-    global entries
+    global entries, header_row, list_name
     print(f"\nShopping List: {list_name}\n")
-    print(f" " * 5 + f"| {header_row[0]:<25} | {header_row[1]:<15}")
-    print("-" * 50)
-    for item, quantity in entries:
-        index = entries.index((item, quantity)) + 1
-        print(f"{index:>3}  | {item:<25} | {quantity:<15}")
+
+    cols = len(header_row)
+    # compute max width per column from headers and data
+    col_widths = [len(str(h)) for h in header_row]
+    for row in entries:
+        for i in range(cols):
+            val = str(row[i]) if i < len(row) else ""
+            col_widths[i] = max(col_widths[i], len(val))
+
+    # add small padding to each column
+    padding = 2
+    col_widths = [w + padding for w in col_widths]
+
+    # build a format string for the row
+    row_fmt = " | ".join(f"{{:<{w}}}" for w in col_widths)
+
+    header_line = " " * 5 + "| " + row_fmt.format(*header_row)
+    print(header_line)
+    print("-" * len(header_line))
+
+    for idx, row in enumerate(entries, start=1):
+        cells = [str(row[i]) if i < len(row) else "" for i in range(cols)]
+        print(f"{idx:>3}  | " + row_fmt.format(*cells))
+
     print("\n")
+    
     
 #---------- shopping list selection
 def shopping_list_select():
     while True:
-        terminal_input = input(f"[a] Add entry \n[m] Modify entry \n[d] Delete entry \n[s] Save list \n[q] Quit to main menu \n \n").strip().lower()
-        return input_validation_selector(terminal_input, ("a", "m", "d", "s", "q"))
+        user_input = input(f"[a] Add entry \n[m] Modify entry \n[d] Delete entry \n[s] Save list \n[q] Quit to main menu \n \n").strip().lower()
+        return input_validation_selector(user_input, ("a", "m", "d", "s", "q"))
             
             
 #---------- shopping list handling loop
@@ -69,12 +99,12 @@ def shopping_list_handling_loop():
                 if not saved:
                     print("You have unsaved changes. Do you want to quit before saving.")
                     while True:
-                        terminal_input = input("Type 'y' to quit without saving, or 'n' to return: ").strip().lower()
-                        if input_validation_selector(terminal_input, ("y", "n")):
-                            if terminal_input == 'y':
+                        user_input = input("Type 'y' to quit without saving, or 'n' to return: ").strip().lower()
+                        if input_validation_selector(user_input, ("y", "n")):
+                            if user_input == 'y':
                                 print("Exiting to main menu without saving...")
                                 return
-                            elif terminal_input == 'n':
+                            elif user_input == 'n':
                                 break
                 else:
                     print("Returning to main menu...")
@@ -92,10 +122,12 @@ def shopping_list_handling_loop():
 #---------- add new entry
 def add_entry(): 
     global entries
-    item = input("Enter the item name: ").strip()
+    item = required_input("Enter the item name: ").strip()
     quantity = input("Enter the quantity: ").strip()
-    entries.append((item, quantity))
-    print(f"Added entry: {item} - {quantity}")
+    price = input("Enter the price: ").strip()
+    entries.append((item, quantity, price))
+    print(f"Added entry: {item} - {quantity} - {price}")
+
 
 
 
