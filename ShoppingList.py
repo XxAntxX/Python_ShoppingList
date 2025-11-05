@@ -2,6 +2,8 @@
 list_name = 0
 entries = []
 header_row = ("Item", "Quantity", "Price")
+all_lists = []
+current_list = []
 
 
 
@@ -9,13 +11,14 @@ header_row = ("Item", "Quantity", "Price")
 
 
 #---------- input validation predefined options
-def input_validation_selector(input, valid_options):    
+def input_validation_selector(prompt, valid_options):    
     while True:
-        if input in valid_options:
-            return input
+        user_input = input(prompt).strip().lower()
+        if user_input in valid_options:
+            return user_input
         else:
             print(f"Invalid input — please enter one of: {', '.join(valid_options)}")
-            return False
+            
 
 #---------- required input (non-empty)
 def required_input(prompt):
@@ -25,19 +28,42 @@ def required_input(prompt):
             return user_input
         else:
             print("This field cannot be empty. Please provide a valid input.")
+            
+#---------- input is float
+def input_price(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if user_input == "":
+            return 0.0
+        try:
+            value = round(float(user_input), 2)
+            return value
+        except ValueError:
+            print("Invalid input — please enter a valid number.")
+
 
 #---------- start selection
 def start_select():
     print(f"\n----------PYTHON SHOPPING LIST----------\n")
     while True:
-        user_input=input(f"[n] New shopping list \n[b] Browse shopping lists \n[q] Quit program \n \n").strip().lower()
-        return input_validation_selector(user_input, ("n", "b", "q"))
+        return input_validation_selector(f"[n] New shopping list \n[b] Browse shopping lists \n[q] Quit program \n \n", ("n", "b", "q"))
     
 
-#---------- get shopping lists
+#---------- import json (shopping lists)
+def import_lists():
+    import json, os
+    global all_lists
+    store_file = "shopping_lists.json"
+    if os.path.exists(store_file):
+        try:
+            with open(store_file, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+                if isinstance(data, list):
+                    all_lists[:] = data
+        except Exception:
+            pass
+        
 
-
-#---------- import file (shopping list)
 
 
 #---------- create new shopping list
@@ -85,8 +111,7 @@ def render_shopping_list():
 #---------- shopping list selection
 def shopping_list_select():
     while True:
-        user_input = input(f"[a] Add entry \n[m] Modify entry \n[d] Delete entry \n[s] Save list \n[q] Quit to main menu \n \n").strip().lower()
-        return input_validation_selector(user_input, ("a", "m", "d", "s", "q"))
+        return input_validation_selector(f"[a] Add entry \n[m] Modify entry \n[d] Delete entry \n[s] Save list \n[q] Quit to main menu \n \n", ("a", "m", "d", "s", "q"))
             
             
 #---------- shopping list handling loop
@@ -99,48 +124,131 @@ def shopping_list_handling_loop():
                 if not saved:
                     print("You have unsaved changes. Do you want to quit before saving.")
                     while True:
-                        user_input = input("Type 'y' to quit without saving, or 'n' to return: ").strip().lower()
-                        if input_validation_selector(user_input, ("y", "n")):
-                            if user_input == 'y':
-                                print("Exiting to main menu without saving...")
-                                return
-                            elif user_input == 'n':
-                                break
+                        user_input = input_validation_selector("Type 'y' to quit without saving, or 'n' to return: ", ("y", "n"))
+                        if user_input == 'y':
+                            print("Exiting to main menu without saving...")
+                            return
+                        elif user_input == 'n':
+                            break
                 else:
                     print("Returning to main menu...")
                     break
             elif user_choice == "a":
                 add_entry()
             elif user_choice == "m":
-                print("Modify entry feature coming soon!")
+                modify_entry()
             elif user_choice == "d":
-                print("Delete entry feature coming soon!")
+                delete_entry()
             elif user_choice == "s":
                 saved = True
-                print("Save list feature coming soon!")
+                save_list_to_file()
 
 #---------- add new entry
 def add_entry(): 
     global entries
     item = required_input("Enter the item name: ").strip()
     quantity = input("Enter the quantity: ").strip()
-    price = input("Enter the price: ").strip()
+    price = input_price("Enter the price: ")
     entries.append((item, quantity, price))
     print(f"Added entry: {item} - {quantity} - {price}")
-
-
-
-
-#---------- modify entry
-
-
-#---------- delete entry
-
-
-#---------- save list to file
-
     
 
+#---------- modify entry
+def modify_entry():
+    global entries
+    if not entries:
+        print("No entries to modify.")
+        return
+    while True:
+        try:
+            entry_num = int(input("Enter the entry number to modify: ").strip())
+            if 1 <= entry_num <= len(entries):
+                old_entries = entries[entry_num - 1]
+                user_choice = input_validation_selector(f"select field to modify: \n[i] Item \n[q] Quantity \n[p] Price \n[a] All fields \n", ("i", "q", "p", "a"))
+                if user_choice == "i":
+                    item = required_input(f"Old name: {old_entries[0]} \nEnter the new item name: ").strip()
+                    entries[entry_num - 1] = (item, old_entries[1], old_entries[2])
+                    print(f"Modified entry {entry_num} to: {item} - {old_entries[1]} - {old_entries[2]}")
+                    return
+                elif user_choice == "q":
+                    quantity = input(f"Old quantity: {old_entries[1]} \nEnter the new quantity: ").strip()
+                    entries[entry_num - 1] = (old_entries[0], quantity, old_entries[2])
+                    print(f"Modified entry {entry_num} to: {old_entries[0]} - {quantity} - {old_entries[2]}")
+                    return
+                elif user_choice == "p":
+                    price = input_price(f"Old price: {old_entries[2]} \nEnter the new price: ")
+                    entries[entry_num - 1] = (old_entries[0], old_entries[1], price)
+                    print(f"Modified entry {entry_num} to: {old_entries[0]} - {old_entries[1]} - {price}")
+                    return
+                elif user_choice == "a":
+                    item = required_input(f"Old name: {old_entries[0]} \nEnter the new item name: ").strip()
+                    quantity = input(f"Old quantity: {old_entries[1]} \nEnter the new quantity: ").strip()
+                    price = input_price(f"Old price: {old_entries[2]} \nEnter the new price: ")
+                    entries[entry_num - 1] = (item, quantity, price)
+                    print(f"Modified entry {entry_num} to: {item} - {quantity} - {price}")
+                    return
+            else:
+                print(f"Invalid entry number. Please enter a number between 1 and {len(entries)}.")
+        except ValueError:
+            print("Invalid input. Please enter a valid entry number.")
+
+#---------- delete entry
+def delete_entry():
+    global entries
+    if not entries:
+        print("No entries to delete.")
+        return
+    while True:
+        try:
+            entry_num = int(input("Enter the entry number to delete: ").strip())
+            if 1 <= entry_num <= len(entries):
+                deleted_entry = entries.pop(entry_num - 1)
+                print(f"Deleted entry: {deleted_entry[0]} - {deleted_entry[1]} - {deleted_entry[2]}")
+                return
+            else:
+                print(f"Invalid entry number. Please enter a number between 1 and {len(entries)}.")
+        except ValueError:
+            print("Invalid input. Please enter a valid entry number.")
+
+#---------- save list to file
+############################# EDIT ###############################
+
+def combine_current_list():
+    """Return a JSON-serializable structure combining list_name and entries."""
+    global list_name, entries, header_row, current_list
+    current_list = {"name": list_name, "entries": entries}
+    return current_list
+def save_list_to_file():
+    """Add/update the current list in the on-disk store (shopping_lists.json)."""
+    global list_name, entries, header_row, all_lists
+    import json, os
+
+    store_file = "shopping_lists.json"
+    record = combine_current_list()
+
+    # load existing store if present
+    if os.path.exists(store_file):
+        try:
+            with open(store_file, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+                if isinstance(data, list):
+                    all_lists[:] = data
+        except Exception:
+            pass
+
+    # upsert by name
+    for i, r in enumerate(all_lists):
+        if r.get("name") == list_name:
+            all_lists[i] = record
+            break
+    else:
+        all_lists.append(record)
+
+    # persist store
+    with open(store_file, "w", encoding="utf-8") as fh:
+        json.dump(all_lists, fh, ensure_ascii=False, indent=2)
+
+    print(f"Saved shopping list '{list_name}' to {store_file}")
 
 
 
@@ -155,4 +263,26 @@ while True:
         create_new_list()
     elif user_choice == "b":
         print("Browsing existing shopping lists...")
-        # Code to browse existing shopping lists would go here
+        import_lists()
+        
+        ############################# EDIT ###############################
+        print(f"Available shopping lists:")
+        for idx, lst in enumerate(all_lists, start=1):
+            print(f"{idx}. {lst.get('name', 'Unnamed List')}")
+        while True:
+            try:
+                list_num = int(input("Enter the number of the shopping list to load (or 0 to cancel): ").strip())
+                if list_num == 0:
+                    print("Cancelled loading a shopping list.")
+                    break
+                elif 1 <= list_num <= len(all_lists):
+                    selected_list = all_lists[list_num - 1]
+                    list_name = selected_list.get("name", "Unnamed List")
+                    entries = selected_list.get("entries", [])
+                    print(f"Loaded shopping list '{list_name}'.")
+                    shopping_list_handling_loop()
+                    break
+                else:
+                    print(f"Invalid number. Please enter a number between 1 and {len(all_lists)}, or 0 to cancel.")
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
