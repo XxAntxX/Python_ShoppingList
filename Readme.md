@@ -21,14 +21,12 @@ This project is intended to:
 **Problem**
 > 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
 
-People need to go shopping from time to time. 
-
-💡 Example: In a small local pizzeria, the staff writes orders and calculates totals by hand. This causes mistakes and inconsistent orders or discounts.
+People have to go shopping from time to time. Most of them make lists in their mind or even go fully unprepared to the grocerie store. Because of this they tend to forget want they realy needed or they buy items that weren't really necessary.  
 
 **Scenario**
 > 🚧 Describe when and how a user will use your application
 
-💡 Example: PizzaRP solves the part of the problem where orders and totals are created by letting a user select items from a menu and automatically generating a correct invoice.
+With the ShoppingList people can list the items they need, the respective quantity, and even the price per item (if known). They can save and edit their list for future use.
 
 **User stories:**
 1. As a user, I want to see the pizza menu in the console.
