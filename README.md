@@ -8,5 +8,7 @@ Example: With the shopping list people can figure out what they really need, how
 
 User stories:
 As a user, I want to make a list of my items I want to buy
+
 As a user, often times im buying more or less the same items, so I want to save my made list and have a possibility to edit them.
+
 As a user, 
