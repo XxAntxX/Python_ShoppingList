@@ -21,6 +21,8 @@ This project is intended to:
 **Problem**
 > 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
 
+People need to go shopping from time to time. 
+
 💡 Example: In a small local pizzeria, the staff writes orders and calculates totals by hand. This causes mistakes and inconsistent orders or discounts.
 
 **Scenario**
