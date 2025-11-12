@@ -28,8 +28,8 @@ People have to go shopping from time to time. Most of them make lists in their m
 With the ShoppingList people can list the items they need, the respective quantity, and even the price per item (if known). They can save and edit their list for future use.
 
 **User stories:**
-1. As a user, I want to see the pizza menu in the console.
-2. As a user, I want to select pizzas and see the running total.
+1. As a user, I want to list the items I need.
+2. As a user, I want to reuse previous lists.
 3. As a user, I want discounts to be applied automatically.
 4. As a user, I want an invoice to be created and saved as a file.
 
