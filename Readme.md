@@ -1,4 +1,4 @@
-# 🍕 PizzaRP – Pizzeria Reference Project (Console)
+a# 🍕 PizzaRP – Pizzeria Reference Project (Console)
 
 > 🚧 This is a template repository for student project in the course Programming Foundations at FHNW, BSc BIT.  
 > 🚧 Do not keep this section in your final submission.
@@ -16,15 +16,14 @@ This project is intended to:
 
 # 🍕 TEMPLATE for documentation
 > 🚧 Please remove this paragraphs having "🚧". These are comments for preparing the documentations.
+> 
 ## 📝 Analysis
 
-**Problem**
-> 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
+**Problem** > 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
 
 People have to go shopping from time to time. Most of them make lists in their mind or even go fully unprepared to the grocerie store. Because of this they tend to forget want they realy needed or they buy items that weren't really necessary.  
 
-**Scenario**
-> 🚧 Describe when and how a user will use your application
+**Scenario** > 🚧 Describe when and how a user will use your application
 
 With the ShoppingList people can list the items they need, the respective quantity, and even the price per item (if known). They can save and edit their list for future use.
 
