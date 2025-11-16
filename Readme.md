@@ -67,13 +67,18 @@ The application interacts with the user via the console. Users can:
 
 The application validates all user input to ensure data integrity and a smooth user experience. This is implemented in `ShoppingList.py` as follows:
 
-- **Menu selection:** When the user enters an item, the program checks if the input is a digit and within the valid menu range:
+- **Menu selection:** When the user enters an item, the program checks if an input within the valid range is given:
 	```python
-	if not choice.isdigit() or not (1 <= int(choice) <= len(menu)):
-			print("⚠️ Invalid choice.")
-			continue
+	def input_validation_selector(prompt, valid_options):    
+    while True:
+        user_input = input(prompt).strip().lower()
+        if user_input in valid_options:
+            return user_input
+        else:
+            print(f"Invalid input — please enter one of: {', '.join(valid_options)}")
+ 
 	```
-	This ensures only valid menu items can be ordered.
+	This ensures only valid items can be listed.
 
 - **Menu file validation:** When reading the menu file, the program checks for valid price values and skips invalid lines:
 	```python
