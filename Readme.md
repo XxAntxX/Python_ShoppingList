@@ -82,10 +82,14 @@ The application validates all user input to ensure data integrity and a smooth u
 
 - **Input validation:** When entering an input, the program checks if an input is given or not:
 	```python
-	try:
-			menu.append({"name": name, "size": size, "price": float(price)})
-	except ValueError:
-			print(f"⚠️ Skipping invalid line: {line.strip()}")
+	def required_input(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if user_input:
+            return user_input
+        else:
+            print("This field cannot be empty. Please provide a valid input.")
+
 	```
 
 - **Main menu options:** The main menu checks for valid options and handles invalid choices gracefully:
