@@ -29,15 +29,15 @@ With the ShoppingList people can list the items they need, the respective quanti
 
 **User stories:**
 1. As a user, I want to list the items I need.
-2. As a user, I want to reuse previous lists.
-3. As a user, I want discounts to be applied automatically.
-4. As a user, I want an invoice to be created and saved as a file.
+2. As a user, I want to add the quantity of the item (so I dont buy too little/much) and the price per piece (if I know it)
+3. As a user, I want to reuse previous lists.
+4. As a user, I want to delete lists if I don't need them anymore
 
 **Use cases:**
-- Show Menu (from `menu.txt`)
-- Create Order (choose pizzas)
-- Show Current Order and Total
-- Print Invoice (to `invoice_xxx.txt`)
+- Create, edit, save and delete lists
+- List items I want to buy
+- Apply a qunatity and a price to an item
+- Show all listed items
 
 ---
 
@@ -56,19 +56,18 @@ Each app must meet the following three criteria in order to be accepted (see als
 > 🚧 In this section, document how your project fulfills each criterion.  
 ---
 The application interacts with the user via the console. Users can:
-- View the pizza menu
-- Select pizzas and quantities
-- See the running total
-- Receive an invoice generated as a file
+- Create, edit, save, and delete lists
+- List items, the quantity of it and the respective price (if known)
+- Can get an overview of all items listed, the quantity and the price per piece
 
 ---
 
 
 ### 2. Data Validation
 
-The application validates all user input to ensure data integrity and a smooth user experience. This is implemented in `main-invoice.py` as follows:
+The application validates all user input to ensure data integrity and a smooth user experience. This is implemented in `ShoppingList.py` as follows:
 
-- **Menu selection:** When the user enters a pizza number, the program checks if the input is a digit and within the valid menu range:
+- **Menu selection:** When the user enters an item, the program checks if the input is a digit and within the valid menu range:
 	```python
 	if not choice.isdigit() or not (1 <= int(choice) <= len(menu)):
 			print("⚠️ Invalid choice.")
