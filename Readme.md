@@ -67,7 +67,7 @@ The application interacts with the user via the console. Users can:
 
 The application validates all user input to ensure data integrity and a smooth user experience. This is implemented in `ShoppingList.py` as follows:
 
-- **Menu selection:** When the user enters an item, the program checks if an input within the valid range is given:
+- **Menu selection:** The user can choose between certain options in the menu, the program checks if an input within the valid range is given:
 	```python
 	def input_validation_selector(prompt, valid_options):    
     while True:
@@ -80,7 +80,7 @@ The application validates all user input to ensure data integrity and a smooth u
 	```
 	This ensures only valid items can be listed.
 
-- **Menu file validation:** When reading the menu file, the program checks for valid price values and skips invalid lines:
+- **Input validation:** When entering an input, the program checks if an input is given or not:
 	```python
 	try:
 			menu.append({"name": name, "size": size, "price": float(price)})
