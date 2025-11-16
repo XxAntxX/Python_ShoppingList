@@ -76,7 +76,6 @@ The application validates all user input to ensure data integrity and a smooth u
             return user_input
         else:
             print(f"Invalid input — please enter one of: {', '.join(valid_options)}")
- 
 	```
 	This ensures only valid items can be listed.
 
@@ -89,13 +88,20 @@ The application validates all user input to ensure data integrity and a smooth u
             return user_input
         else:
             print("This field cannot be empty. Please provide a valid input.")
-
 	```
 
-- **Main menu options:** The main menu checks for valid options and handles invalid choices gracefully:
+- **Float validation:** The program checks if a float is given, if the user inputs a price for an item:
 	```python
-	else:
-			print("⚠️ Invalid choice.")
+	def input_price(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if user_input == "":
+            return 0.0
+        try:
+            value = round(float(user_input), 2)
+            return value
+        except ValueError:
+            print("Invalid input — please enter a valid number.")
 	```
 
 These checks prevent crashes and guide the user to provide correct input, matching the validation requirements described in the project guidelines.
