@@ -129,7 +129,7 @@ The application reads and writes data using files:
 		```
 		Shopping List: Weekly Groceries
 
-     	| Item       | Quantity | Price   
+   		   | Item       | Quantity | Price   
 		----------------------------------------
  		1  | Milk       | 2        | 1.50    
 		2  | Bread      | 1        | 0.99    
