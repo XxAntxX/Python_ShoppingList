@@ -127,16 +127,12 @@ The application reads and writes data using files:
 - **Output file:** `invoice_001.txt` (and similar) — Generated when an order is completed. Contains a summary of the order, including items, quantities, prices, discounts, and totals.
 	- Example:
 		```
-		Invoice #001
-		----------------------
-		1x Margherita (Medium)   12.50
+		Shopping List: Weekly Groceries
 
-
-		2x Salami (Large)        30.00
-		----------------------
-		Total:                  42.50
-		Discount:                2.50
-		Amount Due:             40.00
+     	| Item       | Quantity | Price   
+		----------------------------------------
+ 		1  | Milk       | 2        | 1.50    
+		2  | Bread      | 1        | 0.99    
 		```
 		- The output file serves as a record for both the user and the pizzeria, ensuring accuracy and transparency.
 
