@@ -118,13 +118,13 @@ The application reads and writes data using files:
 - **Input file:** `menu.txt` — Contains the pizza menu, one item per line in the format `PizzaName;Size;Price`.
 	- Example:
 		```
-		Margherita;Medium;12.50
-		Salami;Large;15.00
-		Funghi;Small;9.00
+		item = required_input("Enter the item name: ")
+		quantity = input("Enter the quantity: ")
+		price = input_price("Enter the price: ")
 		```
 	- The application reads this file at startup to display available pizzas.
 
-- **Output file:** `invoice_001.txt` (and similar) — Generated when an order is completed. Contains a summary of the order, including items, quantities, prices, discounts, and totals.
+- **Output file:** `invoice_001.txt` (and similar) — Generated when when the user  is completed. Contains a summary of the items, quantities, prices.
 	- Example:
 		```
 		Shopping List: Weekly Groceries
