@@ -141,16 +141,15 @@ The application reads and writes data using files:
 ### Technology
 - Python 3.x
 - Environment: GitHub Codespaces
-- No external libraries
+- Uses only Python’s standard library
 
 ### 📂 Repository Structure
 ```text
-PizzaRP/
-├── main.py             # main program logic (console application)
-├── menu.txt            # pizza menu (input data file)
-├── invoice_001.txt     # example of a generated invoice (output file)
-├── docs/               # optional screenshots or project documentation
-└── README.md           # project description and milestones
+ShoppingList/
+├── main.py               # main program logic (console application)
+├── shopping_lists.json   # JSON file storing all shopping lists
+├── docs/                 # optional screenshots or project documentation
+└── README.md             # project description and milestones
 ```
 
 ### How to Run
@@ -164,8 +163,8 @@ PizzaRP/
 
 ### Libraries Used
 
-- `os`: Used for file and path operations, such as checking if the menu file exists and creating new files.
-- `glob`: Used to find all invoice files matching a pattern (e.g., `invoice_*.txt`) to determine the next invoice number.
+- `os`: Used to check whether the JSON save file exists.
+- `json`: Used to serialize and deserialize shopping lists for persistent storage.
 
 These libraries are part of the Python standard library, so no external installation is required. They were chosen for their simplicity and effectiveness in handling file management tasks in a console application.
 
