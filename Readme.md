@@ -1,29 +1,12 @@
-a# 🍕 PizzaRP – Pizzeria Reference Project (Console)
+a# 📝 ShoppingList
 
-> 🚧 This is a template repository for student project in the course Programming Foundations at FHNW, BSc BIT.  
-> 🚧 Do not keep this section in your final submission.
+## Analysis
 
-This project is intended to:
-
-- Practice the complete process from **problem analysis to implementation**
-- Apply basic **Python** programming concepts learned in the Programming Foundations module
-- Demonstrate the use of **console interaction, data validation, and file processing**
-- Produce clean, well-structured, and documented code
-- Prepare students for **teamwork and documentation** in later modules
-- Use this repository as a starting point by importing it into your own GitHub account.  
-- Work only within your own copy — do not push to the original template.  
-- Commit regularly to track your progress.
-
-# 🍕 TEMPLATE for documentation
-> 🚧 Please remove this paragraphs having "🚧". These are comments for preparing the documentations.
-> 
-## 📝 Analysis
-
-**Problem** > 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
+**Problem**
 
 People have to go shopping from time to time. Most of them make lists in their mind or even go fully unprepared to the grocerie store. Because of this they tend to forget want they realy needed or they buy items that weren't really necessary.  
 
-**Scenario** > 🚧 Describe when and how a user will use your application
+**Scenario**
 
 With the ShoppingList people can list the items they need, the respective quantity, and even the price per item (if known). They can save and edit their list for future use.
 
@@ -53,15 +36,12 @@ Each app must meet the following three criteria in order to be accepted (see als
 
 ### 1. Interactive App (Console Input)
 
-> 🚧 In this section, document how your project fulfills each criterion.  
 ---
 The application interacts with the user via the console. Users can:
 - Create, edit, save, and delete lists
 - List items, the quantity of it and the respective price (if known)
 - Can get an overview of all items listed, the quantity and the price per piece
-
 ---
-
 
 ### 2. Data Validation
 
@@ -110,7 +90,6 @@ These checks prevent crashes and guide the user to provide correct input, matchi
 
 ---
 
-
 ### 3. File Processing
 
 The application reads and writes data using files:
@@ -153,7 +132,6 @@ ShoppingList/
 ```
 
 ### How to Run
-> 🚧 Adjust if needed.
 1. Open the repository in **GitHub Codespaces**
 2. Open the **Terminal**
 3. Run:
@@ -173,12 +151,11 @@ These libraries are part of the Python standard library, so no external installa
 
 > 🚧 Fill in the names of all team members and describe their individual contributions below. Each student should be responsible for at least one part of the project.
 
-| Name       | Contribution                                 |
-|------------|----------------------------------------------|
-| Student A  | Menu reading (file input) and displaying menu|
-| Student B  | Order logic and data validation              |
-| Student C  | Invoice generation (file output) and slides  |
-
+| Name             | Contribution                                 |
+|------------------|----------------------------------------------|
+| Anthony Kaufmann | Menu reading (file input) and displaying menu|
+| Silvan Aichholz  | Order logic and data validation              |
+| Jerry Wei        | Invoice generation (file output) and slides  |
 
 ## 🤝 Contributing
 
