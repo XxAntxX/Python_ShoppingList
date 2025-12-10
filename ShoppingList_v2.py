@@ -37,7 +37,16 @@ def input_price(prompt):
 #---------- start selection
 def start_select():
     print(f"\n----------PYTHON SHOPPING LIST----------\n")
-    return input_validation_selector(f"[n] New shopping list \n[b] Browse shopping lists \n[q] Quit program \n \n", ("n", "b", "q"))
+    user_choice = input_validation_selector(f"[n] New shopping list \n[b] Browse shopping lists \n[q] Quit program \n \n", ("n", "b", "q"))
+    if user_choice == "q":
+        print("Exiting program. Goodbye!")
+        return exit()
+    elif user_choice == "n":
+        print("Starting a new shopping list...")
+        create_new_list()
+    elif user_choice == "b":
+        print("Browsing existing shopping lists...")
+        load_list_from_record(import_lists())
 
 #---------- create new shopping list
 def create_new_list():
@@ -264,13 +273,5 @@ def remove_list_from_file(list_name):
 #---------- main loop
 while True:
     user_choice = start_select()
-    if user_choice == "q":
-        print("Exiting program. Goodbye!")
-        break
-    elif user_choice == "n":
-        print("Starting a new shopping list...")
-        create_new_list()
-    elif user_choice == "b":
-        print("Browsing existing shopping lists...")
-        load_list_from_record(import_lists())
+
         
