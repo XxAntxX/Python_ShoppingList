@@ -151,11 +151,11 @@ These libraries are part of the Python standard library, so no external installa
 
 > 🚧 Fill in the names of all team members and describe their individual contributions below. Each student should be responsible for at least one part of the project.
 
-| Name             | Contribution                                 |
-|------------------|----------------------------------------------|
-| Anthony Kaufmann | Menu reading (file input) and displaying menu|
-| Silvan Aichholz  | File functions                               |
-| Jerry Wei        |   |
+| Name             | Contribution                                |
+|------------------|---------------------------------------------|
+| Anthony Kaufmann | Add, modify, delete and main loop functions |
+| Silvan Aichholz  | Import, save, and load functions            |
+| Jerry Wei        | Validation and render functions             |
 
 ## 🤝 Contributing
 
