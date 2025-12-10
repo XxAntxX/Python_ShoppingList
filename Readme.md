@@ -154,8 +154,8 @@ These libraries are part of the Python standard library, so no external installa
 | Name             | Contribution                                 |
 |------------------|----------------------------------------------|
 | Anthony Kaufmann | Menu reading (file input) and displaying menu|
-| Silvan Aichholz  | Order logic and data validation              |
-| Jerry Wei        | Invoice generation (file output) and slides  |
+| Silvan Aichholz  | File functions                               |
+| Jerry Wei        |   |
 
 ## 🤝 Contributing
 
