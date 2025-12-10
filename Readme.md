@@ -149,8 +149,6 @@ These libraries are part of the Python standard library, so no external installa
 
 ## 👥 Team & Contributions
 
-> 🚧 Fill in the names of all team members and describe their individual contributions below. Each student should be responsible for at least one part of the project.
-
 | Name             | Contribution                                |
 |------------------|---------------------------------------------|
 | Anthony Kaufmann | Add, modify, delete and main loop functions |
