@@ -38,9 +38,10 @@ Each app must meet the following three criteria in order to be accepted (see als
 
 ---
 The application interacts with the user via the console. Users can:
-- Create, edit, save, and delete lists
-- List items, the quantity of it and the respective price (if known)
-- Can get an overview of all items listed, the quantity and the price per piece
+
+- Navigate a main menu to create new lists or browse existing ones.  
+- Modify lists by adding, modifying, or deleting specific entries.  
+- View a formatted table of all items, quantities, and prices.
 ---
 
 ### 2. Data Validation
@@ -92,28 +93,24 @@ These checks prevent crashes and guide the user to provide correct input, matchi
 
 ### 3. File Processing
 
-The application reads and writes data using files:
+The application reads and writes data using a JSON file to ensure shopping lists are saved between sessions:
 
-- **Input file:** `menu.txt` — Contains the pizza menu, one item per line in the format `PizzaName;Size;Price`.
-	- Example:
-		```
-		item = required_input("Enter the item name: ")
-		quantity = input("Enter the quantity: ")
-		price = input_price("Enter the price: ")
-		```
-	- The application reads this file at startup to display available pizzas.
+- **Storage file:** `shopping_lists.json` — This file acts as the database for the application.
+    - **Writing:** When a user selects "Save list" or removes a list, the application serializes the list data into JSON format and writes it to this file.  
+  	- **Reading:** When the application starts or when the user selects "Browse shopping lists," the application reads this file to retrieve and deserialize the stored lists.  
+	- **Data Structure:** The data is stored as a list of dictionaries, where each dictionary represents a shopping list.
+```
+   [  
+     {  
+       "name": "Weekly Groceries",  
+       "entries": [  
+         ["Milk", "2 liters", 1.50],  
+         ["Bread", "1 loaf", 2.00]  
+       ]  
+     }  
+   ]
+```
 
-- **Output file:** `invoice_001.txt` (and similar) — Generated when when the user  is completed. Contains a summary of the items, quantities, prices.
-	- Example:
-		```
-		Shopping List: Weekly Groceries
-
-   		   | Item       | Quantity | Price   
-		----------------------------------------
- 		1  | Milk       | 2        | 1.50    
-		2  | Bread      | 1        | 0.99    
-		```
-		- The output file serves as a record for both the user and the pizzeria, ensuring accuracy and transparency.
 
 ## ⚙️ Implementation
 
@@ -125,9 +122,8 @@ The application reads and writes data using files:
 ### 📂 Repository Structure
 ```text
 ShoppingList/
-├── main.py               # main program logic (console application)
-├── shopping_lists.json   # JSON file storing all shopping lists
-├── docs/                 # optional screenshots or project documentation
+├── ShoppingList.py       # main program logic (console application)
+├── shopping_lists.json   # JSON file storing all shopping lists (gets created on first run)
 └── README.md             # project description and milestones
 ```
 
@@ -136,7 +132,7 @@ ShoppingList/
 2. Open the **Terminal**
 3. Run:
 	```bash
-	python3 main.py
+	python3 ShoppingList.py
 	```
 
 ### Libraries Used
@@ -144,7 +140,7 @@ ShoppingList/
 - `os`: Used to check whether the JSON save file exists.
 - `json`: Used to serialize and deserialize shopping lists for persistent storage.
 
-These libraries are part of the Python standard library, so no external installation is required. They were chosen for their simplicity and effectiveness in handling file management tasks in a console application.
+These libraries are part of the Python standard library, so no external installation is required.
 
 
 ## 👥 Team & Contributions
