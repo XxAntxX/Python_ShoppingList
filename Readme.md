@@ -87,7 +87,6 @@ The application validates all user input to ensure data integrity and a smooth u
 
 These checks prevent crashes and guide the user to provide correct input, matching the validation requirements described in the project guidelines.
 
----
 
 ---
 
