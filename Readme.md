@@ -36,12 +36,12 @@ Each app must meet the following three criteria in order to be accepted (see als
 
 ### 1. Interactive App (Console Input)
 
----
 The application interacts with the user via the console. Users can:
 
 - Navigate a main menu to create new lists or browse existing ones.  
 - Modify lists by adding, modifying, or deleting specific entries.  
 - View a formatted table of all items, quantities, and prices.
+
 ---
 
 ### 2. Data Validation
@@ -110,6 +110,7 @@ The application reads and writes data using a JSON file to ensure shopping lists
    ]
 ```
 
+---
 
 ## ⚙️ Implementation
 
@@ -141,6 +142,7 @@ ShoppingList/
 
 These libraries are part of the Python standard library, so no external installation is required.
 
+---
 
 ## 👥 Team & Contributions
 
@@ -150,6 +152,8 @@ These libraries are part of the Python standard library, so no external installa
 | Silvan Aichholz  | Import, save, and load functions            |
 | Jerry Wei        | Validation and render functions             |
 
+---
+
 ## 🤝 Contributing
 
 > 🚧 This is a template repository for student projects.  
@@ -158,6 +162,8 @@ These libraries are part of the Python standard library, so no external installa
 - Use this repository as a starting point by importing it into your own GitHub account.  
 - Work only within your own copy — do not push to the original template.  
 - Commit regularly to track your progress.
+
+---
 
 ## 📝 License
 
